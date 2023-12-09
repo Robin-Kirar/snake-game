@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <title>phis phis saanp</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+      @font-face {
+        src: url('media/fightingSpirit.ttf');
+        font-family: 'fs';
+      }
+
+      :root{
+        --saanp: #3498DB;
+        --khana: #884EA0;
+      }
+
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        user-select: none;
+      }
+      body{
+        background: #1A5276;
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Poppins', sans-serif;
+      }
+      .container{
+        background: url('media/bagicha.png') no-repeat center;
+        background-size: contain;
+        position: relative;
+        width: 100vmin;
+        height: 100vmin;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .saanpKaPhotu{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 20vmin;
+      }
+      .header{
+        width: 80vmin;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: -6vmin;
+        margin-bottom: 2vmin;
+        opacity: 0;
+      }
+      .header.active{
+        opacity: 1;
+      }
+      .header h2{
+        font-size: 3vmin;
+        color: #fff;
+      }
+      .header button{
+        background: #3498DB;
+        box-shadow: 0 .7vmin #85C1E9 inset, 0 .7vmin #21618C;
+        font-size: 2vmin;
+        border-radius: 1vmin;
+        color: #fff;
+        outline: none;
+        border: .15vmin solid black;
+        cursor: pointer;
+        transition: 0.1s;
+        height: 5vmin;
+        width: 5vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .header button:active{
+        transform: translateY(.7vmin);
+        box-shadow: 0 .7vmin #85C1E9 inset;
+      }
+      .header button .fas{
+        display: none;
+      }
+      .header button .fas.active{
+        display: block;
+      }
+
+      .saanp{
+        background: var(--saanp);
+        border: .25vmin solid #000;
+      }
+      .saanp.head{
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        display: flex;
+        justify-content: space-around;
+      }
+      .saanp.head::after,
+      .saanp.head::before{
+        content: '';
+        display: block;
+        width: .7vmin;
+        height: .7vmin;
+        margin-top: .8vmin;
+        border-radius: 50%;
+        background: #000;
+      }
+      .khana{
+        background: var(--khana);
+        border: .25vmin solid #000;
+        border-radius: 50%;
+      }
+      .bagicha-container{
+        position: relative;
+        height: 80vmin;
+        width: 80vmin;
+        border: 1px solid #F8C471;
+        box-shadow: 0 0 50px #000, 0 0 5px #000 inset;
+      }
+      .bagicha{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(25, 1fr);
+        grid-template-rows: repeat(25, 1fr);
+      }
+      .start-screen, .end-screen, .help-screen{
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .start-screen.active{
+        display: none;
+      }
+      .end-screen{
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .end-screen.active{
+        display: flex;
+      }
+      .start-screen img, .end-screen img{
+        width: 60vmin;
+        margin-top: -10vmin;
+        margin-bottom: 5vmin;
+      }
+      .start-screen button, .end-screen button{
+        font-size: 3vmin;
+        border-radius: 1vmin;
+        color: #fff;
+        outline: none;
+        border: .15vmin solid black;
+        cursor: pointer;
+        transition: 0.1s;
+      }
+      .end-screen h1{
+        color: #fff;
+        font-size: 4vmin;
+      }
+      .end-screen .over-score{
+        color: var(--saanp);
+        font-size: 8vmin;
+        font-weight: bold;
+      }
+      .st-btn{
+        width: 20vmin;
+        height: 8vmin;
+        background: #F39C12;
+        box-shadow: 0 .7vmin #F8C471 inset, 0 .7vmin #B9770E;
+        margin-bottom: 2.7vmin;
+      }
+      .st-btn:active{
+        transform: translateY(.7vmin);
+        box-shadow: 0 .7vmin #F8C471 inset;
+      }
+      .start-flex-btns{
+        display: flex;
+        width: 20vmin;
+        height: 8vmin;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .start-flex-btns button{
+        height: 100%;
+        width: 9vmin;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .start-flex-btns button:nth-child(1){
+        background: #3498DB;
+        box-shadow: 0 .7vmin #85C1E9 inset, 0 .7vmin #21618C;
+      }
+      .start-flex-btns button:nth-child(2){
+        background: #34495E;
+        box-shadow: 0 .7vmin #85929E inset, 0 .7vmin #1B2631;
+      }
+      .start-flex-btns button .fas{
+        display: none;
+      }
+      .start-flex-btns button .fas.active{
+        display: block;
+      }
+      .start-flex-btns button:nth-child(1):active{
+        transform: translateY(.7vmin);
+        box-shadow: 0 .7vmin #85C1E9 inset;
+      }
+      .start-flex-btns button:nth-child(2):active{
+        transform: translateY(.7vmin);
+        box-shadow: 0 .7vmin #85929E inset;
+      }
+
+      .help-screen{
+        display: none;
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .help-screen.active{
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header" id="header">
+        <h2>Score : <span id="score">0</span></h2>
+        <button id="pause"><i class="fas fa-play active"></i><i class="fas fa-pause"></i></button>
+      </div>
+      <div class="bagicha-container">
+        <div class="bagicha" id="bagicha"></div>
+        <!-- Start Screen -->
+        <div class="start-screen" id="start-screen">
+          <img src="media/snacks.png">
+          <button class="st-btn" id="start">Start</button>
+          <div class="start-flex-btns">
+            <button id="music"><i class="fas fa-volume-up active"></i><i class="fas fa-volume-mute"></i></button>
+            <button id="help"><i class="far fa-list-alt"></i></button>
+          </div>
+        </div>
+        <!-- End Screen -->
+        <div class="end-screen" id="end-screen">
+          <img src="media/gameover.png">
+          <h1>Your Score</h1>
+          <span class="over-score" id="over-score">0</span>
+          <button class="st-btn" id="restart">Restart</button>
+        </div>
+        <div class="help-screen">
+          <h1>Help</h1>
+        </div>
+      </div>
+      <img src="media/saanp.png" class="saanpKaPhotu" />
+    </div>
+
+
+    <script src="saanp.js"></script>
+  </body>
+</html>
